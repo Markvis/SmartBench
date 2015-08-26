@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/resultTextView"
-        android:text="Time taken"
+        android:text="0 ms"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="90dp"/>
@@ -35,4 +35,14 @@
         android:layout_below="@+id/multithreadButton"
         android:layout_centerHorizontal="true"
         android:onClick="onClickSingleThread"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Time taken to calculate: "
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>
