@@ -6,20 +6,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class cpubenchmark extends AppCompatActivity {
 
-    final int primeCount = 100000;
-    boolean inProgress = false;
-    TextView resultTextView;
+    private final int primeCount = 100000;
+    private boolean inProgress = false;
+    private TextView resultTextView;
+    private ListView mDrawerList;
+    private ArrayAdapter<String> mAdapter;
+    private ProgressBar cpuBenchPB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cpubenchmark);
 
+        // get resources
         resultTextView = (TextView) findViewById(R.id.resultTextView);
+        mDrawerList = (ListView)findViewById(R.id.navList);
+        cpuBenchPB = (ProgressBar) findViewById(R.id.cpuBenchProgressBar);
+        cpuBenchPB.setVisibility(View.INVISIBLE);
+
+        // perform requirements
+        addDrawerItems();
     }
 
     @Override
@@ -48,6 +61,7 @@ public class cpubenchmark extends AppCompatActivity {
     {
         if(!inProgress) {
             inProgress = true;
+            cpuBenchPB.setVisibility(View.VISIBLE);
             new multiThreadBenchmarkAsync().execute("");
         }
     }
@@ -56,6 +70,7 @@ public class cpubenchmark extends AppCompatActivity {
     {
         if(!inProgress) {
             inProgress = true;
+            cpuBenchPB.setVisibility(View.VISIBLE);
             new singleThreadBenchmarkAsync().execute("");
         }
     }
@@ -105,10 +120,11 @@ public class cpubenchmark extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
             resultTextView.setText(String.valueOf(s + " ms"));
             inProgress = false;
-
-            super.onPostExecute(s);
+            cpuBenchPB.setVisibility(View.INVISIBLE);
         }
     }
     private class singleThreadBenchmarkAsync extends AsyncTask<String, Void,String>{
@@ -132,10 +148,17 @@ public class cpubenchmark extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
             resultTextView.setText(String.valueOf(s + " ms"));
             inProgress = false;
-
-            super.onPostExecute(s);
+            cpuBenchPB.setVisibility(View.INVISIBLE);
         }
+    }
+
+    private void addDrawerItems() {
+        String[] smartBenchSelection = { "CPU Benchmark", "CPU Stress Test" };
+        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, smartBenchSelection);
+        mDrawerList.setAdapter(mAdapter);
     }
 }
