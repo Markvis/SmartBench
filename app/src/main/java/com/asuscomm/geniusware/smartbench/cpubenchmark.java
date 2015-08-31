@@ -1,17 +1,33 @@
 package com.asuscomm.geniusware.smartbench;
 
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class cpubenchmark extends AppCompatActivity {
+import com.vungle.publisher.VunglePub;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class cpubenchmark extends AppCompatActivity implements Serializable {
+
+    private static final long serialVersionUID = 9876543210L;
 
     private final int primeCount = 100000;
     private boolean inProgress = false;
@@ -19,6 +35,14 @@ public class cpubenchmark extends AppCompatActivity {
     private ListView mDrawerList;
     private ArrayAdapter<String> mAdapter;
     private ProgressBar cpuBenchPB;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private DrawerLayout mDrawerLayout;
+    private String mActivityTitle;
+    private ArrayList<Integer> multiThreadArrayList;
+    private ArrayList<Integer> singleThreadArrayList;
+
+    // get the VunglePub instance
+    final VunglePub vunglePub = VunglePub.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +54,22 @@ public class cpubenchmark extends AppCompatActivity {
         mDrawerList = (ListView)findViewById(R.id.navList);
         cpuBenchPB = (ProgressBar) findViewById(R.id.cpuBenchProgressBar);
         cpuBenchPB.setVisibility(View.INVISIBLE);
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        mActivityTitle = getTitle().toString();
+
+        // create back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         // perform requirements
         addDrawerItems();
+        setupDrawer();
+
+        // get your App ID from the app's main page on the Vungle Dashboard after setting up your app
+        final String app_id = "smartbench";
+
+        // initialize the Publisher SDK
+        vunglePub.init(this, app_id);
     }
 
     @Override
@@ -54,7 +91,23 @@ public class cpubenchmark extends AppCompatActivity {
             return true;
         }
 
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     public void onClickMultiThread(View v)
@@ -125,6 +178,9 @@ public class cpubenchmark extends AppCompatActivity {
             resultTextView.setText(String.valueOf(s + " ms"));
             inProgress = false;
             cpuBenchPB.setVisibility(View.INVISIBLE);
+
+            // save data
+            //writeObject(multiThreadArrayList);
         }
     }
     private class singleThreadBenchmarkAsync extends AsyncTask<String, Void,String>{
@@ -160,5 +216,87 @@ public class cpubenchmark extends AppCompatActivity {
         String[] smartBenchSelection = { "CPU Benchmark", "CPU Stress Test" };
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, smartBenchSelection);
         mDrawerList.setAdapter(mAdapter);
+
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                if(position == 0) {
+//                    Intent i = new Intent(getApplicationContext(), cpubenchmark.class);
+//                    startActivity(i);
+//                }
+//                else if(position == 1) {
+//                    Intent i = new Intent(getApplicationContext(), cpustress.class);
+//                    startActivity(i);
+//                }
+            }
+        });
+    }
+
+    private void setupDrawer() {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                R.string.drawer_open, R.string.drawer_close) {
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                getSupportActionBar().setTitle("Navigation!");
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                getSupportActionBar().setTitle(mActivityTitle);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+        };
+
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+    }
+
+    private void writeObject(java.io.ObjectOutputStream out) throws IOException {
+//        String fileName = "SmartBenchData.ser";
+//        Context context = this.getApplicationContext();
+//
+//        FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+//        ObjectOutputStream os = new ObjectOutputStream(fos);
+//        os.writeObject(this);
+//        os.close();
+//        fos.close();
+
+        try
+        {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("/sdcard/SmartBench/SmartBench.ser"))); //Select where you wish to save the file...
+            oos.writeObject(out); // write the class as an 'object'
+            oos.flush(); // flush the stream to insure all of the information was written to 'save_object.bin'
+            oos.close();// close the stream
+        }
+        catch(Exception ex)
+        {
+            Log.v("Serialization Save Error : ", ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
+
+    }
+
+    // Vungle override functions
+    @Override
+    protected void onPause() {
+        super.onPause();
+        vunglePub.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        vunglePub.onResume();
+    }
+
+    public void playVungleAd(View v){
+        vunglePub.playAd();
     }
 }

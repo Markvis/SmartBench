@@ -61,6 +61,15 @@
             android:layout_centerHorizontal="true"
             android:indeterminate="false"/>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play Ad"
+            android:id="@+id/button"
+            android:layout_below="@+id/singlethreadButton"
+            android:layout_centerHorizontal="true"
+            android:onClick="playVungleAd"/>
+
     </RelativeLayout>
 
     <ListView
