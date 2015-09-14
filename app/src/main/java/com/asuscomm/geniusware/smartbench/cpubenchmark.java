@@ -96,7 +96,7 @@ public class cpubenchmark extends AppCompatActivity {
             }
 
             // start timer
-            long time = System.currentTimeMillis();
+            long startTime = System.currentTimeMillis();
 
             // start threads
             for(int i = 0; i < numberOfProcessors; i++) {
@@ -113,9 +113,9 @@ public class cpubenchmark extends AppCompatActivity {
             }
 
             // end timer
-            long res = System.currentTimeMillis() - time;
+            long totalTime = System.currentTimeMillis() - startTime;
 
-            return String.valueOf(res);
+            return String.valueOf(totalTime);
         }
 
         @Override
@@ -127,6 +127,7 @@ public class cpubenchmark extends AppCompatActivity {
             cpuBenchPB.setVisibility(View.INVISIBLE);
         }
     }
+
     private class singleThreadBenchmarkAsync extends AsyncTask<String, Void,String>{
 
         @Override
@@ -157,7 +158,7 @@ public class cpubenchmark extends AppCompatActivity {
     }
 
     private void addDrawerItems() {
-        String[] smartBenchSelection = { "CPU Benchmark", "CPU Stress Test" };
+        String[] smartBenchSelection = { "CPU Benchmark" };
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, smartBenchSelection);
         mDrawerList.setAdapter(mAdapter);
     }
