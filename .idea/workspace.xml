@@ -11,13 +11,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="719a4c01-53bf-47de-a215-db2fd4d7d7ff" name="Default" comment="-added a template for navigation drawer&#10;-added progress bar when waiting for results&#10;-changed material design color">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/asuscomm/geniusware/smartbench/cpustress.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_cpustress.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_cpustress.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+    <list default="true" id="719a4c01-53bf-47de-a215-db2fd4d7d7ff" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_cpubenchmark.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_cpubenchmark.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/asuscomm/geniusware/smartbench/cpubenchmark.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/asuscomm/geniusware/smartbench/cpubenchmark.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="SmartBench.iws" />
@@ -42,10 +38,12 @@
       <file leaf-file-name="cpubenchmark.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/asuscomm/geniusware/smartbench/cpubenchmark.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71235955">
-              <caret line="142" column="0" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.040268455">
+              <caret line="179" column="31" selection-start-line="179" selection-start-column="31" selection-end-line="179" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#5665#6024#0" expanded="true" />
+                <element signature="e#6023#6024#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1563,11 +1561,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values-v22/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/asuscomm/geniusware/smartbench/cpustress.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_cpustress.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_cpubenchmark.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/asuscomm/geniusware/smartbench/cpubenchmark.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_cpubenchmark.xml" />
       </list>
     </option>
   </component>
@@ -1982,7 +1980,13 @@
       <option name="project" value="LOCAL" />
       <updated>1440623690824</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="-removed stresstest activity">
+      <created>1442190811744</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1442190811744</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2003,13 +2007,13 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32907802" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32624114" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32624114" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3281471" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2042,7 +2046,8 @@
     <MESSAGE value="-modified multithreaded benchmark implementation to use AsyncTask" />
     <MESSAGE value="-implemented asynctask on both multithread and single thread benchmark&#10;-included a lock on the processing to prevent creating to many threads" />
     <MESSAGE value="-added a template for navigation drawer&#10;-added progress bar when waiting for results&#10;-changed material design color" />
-    <option name="LAST_COMMIT_MESSAGE" value="-added a template for navigation drawer&#10;-added progress bar when waiting for results&#10;-changed material design color" />
+    <MESSAGE value="-removed stresstest activity" />
+    <option name="LAST_COMMIT_MESSAGE" value="-removed stresstest activity" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2055,6 +2060,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5665#6024#0" expanded="true" />
+            <element signature="e#6023#6024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2100,6 +2107,8 @@
           <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5665#6024#0" expanded="true" />
+            <element signature="e#6023#6024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2141,6 +2150,8 @@
           <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5665#6024#0" expanded="true" />
+            <element signature="e#6023#6024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2199,6 +2210,8 @@
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5665#6024#0" expanded="true" />
+            <element signature="e#6023#6024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2235,6 +2248,8 @@
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5665#6024#0" expanded="true" />
+            <element signature="e#6023#6024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2271,6 +2286,8 @@
           <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5665#6024#0" expanded="true" />
+            <element signature="e#6023#6024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2299,6 +2316,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5665#6024#0" expanded="true" />
+            <element signature="e#6023#6024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2364,17 +2383,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_cpubenchmark.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2415,12 +2423,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_cpubenchmark.xml">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/asuscomm/geniusware/smartbench/cpubenchmark.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71235955">
-          <caret line="142" column="0" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.040268455">
+          <caret line="179" column="31" selection-start-line="179" selection-start-column="31" selection-end-line="179" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5665#6024#0" expanded="true" />
+            <element signature="e#6023#6024#0" expanded="true" />
           </folding>
         </state>
       </provider>

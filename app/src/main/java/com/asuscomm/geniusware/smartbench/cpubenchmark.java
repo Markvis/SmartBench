@@ -1,12 +1,15 @@
 package com.asuscomm.geniusware.smartbench;
 
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,6 +22,9 @@ public class cpubenchmark extends AppCompatActivity {
     private ListView mDrawerList;
     private ArrayAdapter<String> mAdapter;
     private ProgressBar cpuBenchPB;
+    private Button mMultiThreadButton;
+    private Button mSingleThreadButton;
+    private TextView mHeaderTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,11 @@ public class cpubenchmark extends AppCompatActivity {
         resultTextView = (TextView) findViewById(R.id.resultTextView);
         mDrawerList = (ListView)findViewById(R.id.navList);
         cpuBenchPB = (ProgressBar) findViewById(R.id.cpuBenchProgressBar);
+        mMultiThreadButton = (Button) findViewById(R.id.multithreadButton);
+        mSingleThreadButton = (Button) findViewById(R.id.singlethreadButton);
+        mHeaderTextView = (TextView) findViewById(R.id.headerTextView);
+
+        // hide progressbar
         cpuBenchPB.setVisibility(View.INVISIBLE);
 
         // perform requirements
@@ -158,8 +169,37 @@ public class cpubenchmark extends AppCompatActivity {
     }
 
     private void addDrawerItems() {
-        String[] smartBenchSelection = { "CPU Benchmark" };
+        String[] smartBenchSelection = { "CPU Benchmark", "Device Information" };
         mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, smartBenchSelection);
         mDrawerList.setAdapter(mAdapter);
+
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0){
+                    cpuBench();
+                }
+                else if (position == 1) {
+                    deviceInfo();
+                }
+            }
+        });
+    }
+
+    private void cpuBench(){
+        resultTextView.setVisibility(View.VISIBLE);
+        mSingleThreadButton.setVisibility(View.VISIBLE);
+        mMultiThreadButton.setVisibility(View.VISIBLE);
+
+        mHeaderTextView.setText("Time taken to calculate: ");
+    }
+
+    private void deviceInfo(){
+        //mHeaderTextView.setVisibility(View.INVISIBLE);
+        resultTextView.setVisibility(View.INVISIBLE);
+        mSingleThreadButton.setVisibility(View.INVISIBLE);
+        mMultiThreadButton.setVisibility(View.INVISIBLE);
+
+        mHeaderTextView.setText(Build.MANUFACTURER.toUpperCase() + " " + Build.MODEL.toUpperCase());
     }
 }
