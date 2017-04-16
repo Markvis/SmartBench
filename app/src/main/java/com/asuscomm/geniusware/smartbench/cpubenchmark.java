@@ -1,8 +1,11 @@
 package com.asuscomm.geniusware.smartbench;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +28,7 @@ public class cpubenchmark extends AppCompatActivity {
     private Button mMultiThreadButton;
     private Button mSingleThreadButton;
     private TextView mHeaderTextView;
+    private WakeLock mCpuWakeLock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,9 @@ public class cpubenchmark extends AppCompatActivity {
 
         // perform requirements
         addDrawerItems();
+
+        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        mCpuWakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "SmartBenchWakeLock");
     }
 
     @Override
@@ -91,6 +98,8 @@ public class cpubenchmark extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
+            mCpuWakeLock.acquire();
+
             final Prime y = new Prime();
             final int processPerThread = primeCount/Runtime.getRuntime().availableProcessors();
             final int numberOfProcessors = Runtime.getRuntime().availableProcessors();
@@ -126,6 +135,8 @@ public class cpubenchmark extends AppCompatActivity {
             // end timer
             long totalTime = System.currentTimeMillis() - startTime;
 
+            mCpuWakeLock.release();
+
             return String.valueOf(totalTime);
         }
 
@@ -144,6 +155,8 @@ public class cpubenchmark extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
+            mCpuWakeLock.acquire();
+
             final Prime y = new Prime();
 
             // start timer
@@ -154,6 +167,8 @@ public class cpubenchmark extends AppCompatActivity {
 
             // end timer
             long res = System.currentTimeMillis() - time;
+
+            mCpuWakeLock.release();
 
             return String.valueOf(res);
         }
